@@ -3826,5 +3826,20 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         self.debugOption = debugOption;
     }
 }
+#pragma mark - Dark mode Adapter
+
+#ifdef __IPHONE_13_0
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    [super traitCollectionDidChange:previousTraitCollection];
+    
+    if (@available(iOS 13.0, *)) {
+        if([UITraitCollection.currentTraitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]){
+            [self _commitUpdate];
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+}
+#endif
 
 @end
