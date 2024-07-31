@@ -348,7 +348,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         [self _endSelectionDotFixTimer];
     }
 }
-
+- (void)WUpdateDot {
+    [self _updateSelectionView];
+}
 /// Update inner contains's size.
 - (void)_updateInnerContainerSize {
     CGSize size = [self _getVisibleSize];
@@ -2583,6 +2585,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         } else {
             _trackingRange = _selectedTextRange;
             if (_state.trackingGrabber) {
+                if ([self.delegate respondsToSelector:@selector(textViewTouchesMovedWhenTrackingGrabber)]) {
+                    [self.delegate textViewTouchesMovedWhenTrackingGrabber];
+                }
                 self.panGestureRecognizer.enabled = NO;
                 [self _hideMenu];
                 [self _updateTextRangeByTrackingGrabber];
@@ -2675,6 +2680,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
                     else [self _showMenu];
                 }
             } else if (_state.trackingGrabber) {
+                if ([self.delegate respondsToSelector:@selector(textViewTouchesEndedWhenTrackingGrabber)]) {
+                    [self.delegate textViewTouchesEndedWhenTrackingGrabber];
+                }
                 [self _updateTextRangeByTrackingGrabber];
                 [self _showMenu];
             } else if (_state.trackingPreSelect) {
