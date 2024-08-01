@@ -348,6 +348,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic) CGFloat extraAccessoryViewHeight;
 
+/**
+ Selection Grabber Dot On SelectionView
+ Default value is NO
+ */
+@property (nonatomic, assign) BOOL dotOnSelectionView;
+
 - (void)WUpdateDot;
 
 @end

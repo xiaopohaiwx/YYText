@@ -2337,6 +2337,12 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     _containerView.debugOption = debugOption;
 }
 
+- (void)setDotOnSelectionView:(BOOL)dotOnSelectionView {
+    _dotOnSelectionView = dotOnSelectionView;
+    _selectionView.dotOnSelf = dotOnSelectionView;
+    self.clipsToBounds = NO;
+}
+
 - (YYTextDebugOption *)debugOption {
     return _containerView.debugOption;
 }

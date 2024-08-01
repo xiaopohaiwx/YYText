@@ -414,8 +414,13 @@
 - (void)showSelectionDot:(YYTextSelectionView *)selection {
     if (!selection) return;
     [self _updateWindowLevel];
-    [self insertSubview:selection.startGrabber.dot.mirror atIndex:0];
-    [self insertSubview:selection.endGrabber.dot.mirror atIndex:0];
+    if(selection.dotOnSelf) {
+        [selection insertSubview:selection.startGrabber.dot.mirror atIndex:0];
+        [selection insertSubview:selection.endGrabber.dot.mirror atIndex:0];
+    } else {
+        [self insertSubview:selection.startGrabber.dot.mirror atIndex:0];
+        [self insertSubview:selection.endGrabber.dot.mirror atIndex:0];
+    }
     [self _updateSelectionGrabberDot:selection.startGrabber.dot selection:selection];
     [self _updateSelectionGrabberDot:selection.endGrabber.dot selection:selection];
 }

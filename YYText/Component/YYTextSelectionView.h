@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) YYSelectionGrabber *startGrabber;
 @property (nonatomic, readonly) YYSelectionGrabber *endGrabber;
 
+@property (nonatomic, assign) BOOL dotOnSelf;  ///< default is NO
+
 - (BOOL)isGrabberContainsPoint:(CGPoint)point;
 - (BOOL)isStartGrabberContainsPoint:(CGPoint)point;
 - (BOOL)isEndGrabberContainsPoint:(CGPoint)point;
